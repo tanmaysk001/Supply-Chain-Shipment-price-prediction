@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Shipment Price Prediction</title>
+    <style>
+      /* Add some basic styling to the page */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://www.ddslogistics.com/w2018/wp-content/uploads/2021/04/supply-chain-management-qu-est-ce-que-c-est.jpg.webp');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      h1 {
+        margin-top: 50px;
+        text-align: center;
+        color: #555;
+      }
+      .container {
+        margin: 0 auto;
+        max-width: 600px;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        margin-top: 50px;
+      }
+      form {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      input[type=number], input[type=range] {
+        margin: 10px;
+        width: 80%;
+        height: 40px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f5f5f5;
+        font-size: 18px;
+        text-align: center;
+        -webkit-appearance: none;
+      }
+      input[type=range]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 25px;
+        height: 25px;
+        background-color: #fff;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        cursor: pointer;
+      }
+      input[type=range]::-webkit-slider-thumb:hover {
+        border: 2px solid #555;
+      }
+      input[type=range]::-webkit-slider-thumb:active {
+        border: 2px solid #555;
+      }
+      input[type=submit] {
+        margin-top: 20px;
+        width: 50%;
+        height: 50px;
+        background-color: #40da45;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.2s ease;
+      }
+      input[type=submit]:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Shipment Price Prediction</h1>
+    <div class="input-container">
+    <div class="input-label">Line Item Quantity:</div>
+    <input id="line-item-quantity" type="number" min="1" max="10000" value="1" required>
+  </div>
+
+  <div class="input-container">
+    <div class="input-label">Freight Cost (USD):</div>
+    <input id="freight-cost" type="number" min="0" max="100000" value="0" required>
+  </div>
+
+  <div class="input-container">
+    <div class="input-label">Weight (Kilograms):</div>
+    <input id="weight" type="number" min="0" max="10000" value="1" required>
+  </div>
+
+  <div class="input-container">
+    <div class="input-label">Pack Price:</div>
+    <input id="pack-price" type="number" min="0" max="100000" value="0" required>
+  </div>
+
+  <div class="input-container">
+    <div class="input-label">Unit Price:</div>
+    <input id="unit-price" type="number" min="0" max="100000" value="0" required>
+  </div>
+
+  <!-- Submit button to trigger prediction -->
+  <button id="submit-button" type="submit">Predict Shipment Price</button>
+
+</form>
+
+<!-- Display section for predicted shipment price -->
+<div class="output-container">
+  <div class="output-label">Predicted Shipment Price:</div>
+  <div id="predicted-price"></div>
+</div>
