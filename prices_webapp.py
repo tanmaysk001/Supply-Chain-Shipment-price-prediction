@@ -2,27 +2,16 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import seaborn as sns
+import matplotlib.pyplot as plt
 from sklearn.preprocessing import MinMaxScaler
+import os
 
 st.set_page_config(page_title='Webapp for machine learning model', 
                     page_icon=':chart_with_upwards_trend:',
-                    layout="centered",
+                    layout="wide",
                     initial_sidebar_state="expanded")
 
-st.markdown(
-    """
-    <style>
-        .stApp {
-            background-color: #f5f5f5;
-        }
-        .stButton button {
-            background-color: #3399ff;
-            color: white;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 model = joblib.load('xgb_regressor_model_5.sav')
 
@@ -35,6 +24,9 @@ def predict_shipment_price(line_item_quantity, freight_cost, weight, pack_price,
 
 def main():
     st.title("Shipment Price Prediction")
+    st.text('In this webapp, I have deployed a ML model which can predict shipment prices according to the following input parameters. \nThe dataset that I have used for this project is available on kaggle.com')
+
+    #sliders
     line_item_quantity = st.slider("Line Item Quantity", min_value = 1.0, max_value = 15.0, step = 0.05)
     freight_cost = st.slider("Freight Cost (USD)", min_value = 7.0, max_value = 14.0 , step = 0.05)
     weight = st.slider("Weight (Kilograms)", min_value = 4.0, max_value = 14.0, step = 0.05)
@@ -72,4 +64,4 @@ def main():
             st.error(f"An error occurred while making the prediction: {e}")
 
 if __name__ == "__main__":
-    main()
+    main()    
