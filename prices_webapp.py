@@ -13,7 +13,7 @@ st.set_page_config(page_title='Webapp for machine learning model',
                     initial_sidebar_state="expanded")
 
 
-model = joblib.load('xgb_regressor_model_5.sav')
+model = joblib.load('Saved Models\\xgb_regressor_model_5.sav')
 
 def predict_shipment_price(line_item_quantity, freight_cost, weight, pack_price, unit_price):
     input_data = np.array([[line_item_quantity, freight_cost, weight, pack_price, unit_price]])
@@ -52,7 +52,7 @@ def main():
                 'Unit Price': [unit_price],
                 'Predicted Shipment Price': [prediction]
             })
-            df.to_csv('predictions.csv', mode='a', index=False, header=not os.path.isfile('predictions.csv'))
+            df.to_csv('Generated Data\predictions.csv', mode='a', index=False, header=not os.path.isfile('Generated Data\predictions.csv'))
 
             # Reset sliders to default values
             line_item_quantity = 1.0
