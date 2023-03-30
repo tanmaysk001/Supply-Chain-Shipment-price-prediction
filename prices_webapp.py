@@ -13,7 +13,7 @@ st.set_page_config(page_title='Webapp for machine learning model',
                     initial_sidebar_state="expanded")
 
 
-model = joblib.load('Saved Models/xgb_regressor_model_5.sav')
+model = joblib.load('Shipment cost prediction project/xgb_model_5.json')
 
 def predict_shipment_price(line_item_quantity, freight_cost, weight, pack_price, unit_price):
     input_data = np.array([[line_item_quantity, freight_cost, weight, pack_price, unit_price]])
