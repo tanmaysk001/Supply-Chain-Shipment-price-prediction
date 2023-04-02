@@ -4,22 +4,26 @@ import numpy as np
 import joblib
 import seaborn as sns
 import matplotlib.pyplot as plt
+import xgboost as xgb
 from sklearn.preprocessing import MinMaxScaler
 import os
+import pickle
 
 st.set_page_config(page_title='Webapp for machine learning model', 
                     page_icon=':chart_with_upwards_trend:',
                     layout="wide",
                     initial_sidebar_state="expanded")
 
-
-model = joblib.load('Shipment cost prediction project/xgb_model_5.json')
+loaded_model = xgb.Booster()
+loaded_model.load_model('Saved Models/xgb_model_5.bin')
 
 def predict_shipment_price(line_item_quantity, freight_cost, weight, pack_price, unit_price):
-    input_data = np.array([[line_item_quantity, freight_cost, weight, pack_price, unit_price]])
+    input_data = np.array([line_item_quantity, freight_cost, weight, pack_price, unit_price])
+    input_data = input_data.reshape(1, -1)
     #scaler = MinMaxScaler()
     #input_data_scaled = scaler.fit_transform(input_data)
-    prediction = model.predict(input_data)
+    input_dmatrix = xgb.DMatrix(input_data)
+    prediction = loaded_model.predict(input_dmatrix)
     return prediction[0]
 
 def main():
